@@ -1,10 +1,32 @@
 clear all;
 
+%%모듈 추가
 addpath('Modules');
-cam = webcam('USB 카메라');
 
 
+%%%카메라 설정
+camname = 'USB 카메라';
+cam = webcam(camname);
 xy = [960 1280];
+
+
+%%%아두이노 설정
+arduinoport = '/dev/tty.usbmodem1421';
+hservopin = 9;
+vservopin = 10;
+
+uno = arduino(arduinoport,'uno');
+
+hservo = servo(uno,hservopin);
+vservo = servo(uno,vservopin);
+
+
+hpos = 180 * readPosition (hservo);
+vpos = 180 * readPosition (vservo);
+
+
+
+
 rgb = [236 190 123];
 
 
@@ -23,6 +45,8 @@ while (1)
 
     hold on
     %This is a loop to bound the red objects in a rectangular box.
+    maxsize = 0;
+    maxobject = 1;
 	for object = 1:length(stats)
         bb = stats(object).BoundingBox;
         if bb > 30 
@@ -31,11 +55,30 @@ while (1)
             plot(bc(1),bc(2), '-m+')
             a=text(bc(1)+15,bc(2), strcat('X: ', num2str(round(bc(1))), '    Y: ', num2str(round(bc(2)))));
             set(a, 'FontName', 'Arial', 'FontWeight', 'bold', 'FontSize', 12, 'Color', 'yellow');
+            
+            if ( bc(1)*bc(2) > maxsize)
+                maxsize = bc(1)*bc(2);
+                maxobject = object;
+                
+                
+                
+            end
+            
         end
 	end
     
     hold off
     
+    
+	if (~isempty(stats))
+        stats(maxobject)
+        [hpos, vpos]= aiming(hpos,vpos,stats(maxobject).Centroid,xy/2);
+        hpos
+        vpos
+        writePosition(hservo,hpos);
+        writePosition(vservo,vpos);
+        
+	end
     
     
     
