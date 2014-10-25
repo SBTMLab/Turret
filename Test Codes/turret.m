@@ -1,8 +1,9 @@
 clear all
-cam = webcam('Microsoft LifeCam VX-6000')
-theta1 = 5;
-theta2 = 10;
+cam = webcam('FaceTime HD Ä«¸Þ¶ó');
+theta1 = 5;;
+theta2 = 10;;
 while(1)
+    
     
     IMG = snapshot(cam);
     nCount =1;

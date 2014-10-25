@@ -1,33 +1,36 @@
 clear all
-cam = webcam('Microsoft LifeCam VX-6000');
+cam = webcam('USB 카메라');
 
- hold on;
- IMG = snapshot(cam);
+hold on;
+
+pause(3);
+
+IMG = snapshot(cam);
 
 imshow(IMG);
 
 
 
-v=[0 480 0 640];
-axis(v);
-[xi,yi,button]=ginput(1);               %마우스로 클릭한 좌표를 받는다.
-plot(xi,yi,'ro');                       %마우스로 클릭한 좌표에 o를 찍는다.
+
+% v=[0 1280 0 960];
+% axis(v);
+% [xi,yi,button]=ginput(1);               %마우스로 클릭한 좌표를 받는다.
+% plot(xi,yi,'ro');                       %마우스로 클릭한 좌표에 o를 찍는다.
 
 hold off;
 
-xi = round(xi);
-yi = round(yi);
 
-r = 236%IMG(xi,yi,1)
-g = 170%IMG(xi,yi,2)
-b = 123%IMG(xi,yi,3)
+
+r = 236;%IMG(xi,yi,1)
+g = 170;%IMG(xi,yi,2)
+b = 123;%IMG(xi,yi,3)
 
 
 while (1)
     IMG = snapshot(cam);
-    diff_im = zeros(480,640);  
-    for i=1:480
-        for j = 1:640
+    diff_im = zeros(960,1280);  
+    for i=1:960
+        for j = 1:1280
             if (IMG(i,j,1) < r+ 25 && IMG(i,j,1) > r - 25 && IMG(i,j,2) < g+ 25 && IMG(i,j,2) > g - 25 &&IMG(i,j,3) < b+ 25 && IMG(i,j,3) > b - 25)
                 diff_im(i,j) = 1;
 
