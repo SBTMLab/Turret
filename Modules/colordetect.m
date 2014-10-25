@@ -22,4 +22,4 @@ end
 diff_im = bwareaopen(diff_im,80);
 bw = bwlabel(diff_im, 4);
 
-out = bw;
+out = regionprops(bw, 'BoundingBox', 'Centroid');
