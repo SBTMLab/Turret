@@ -26,7 +26,7 @@ vpos = 180 * readPosition (vservo);
 
 
 
-rgb = [200 150 90];
+rgb = [216 200 47];
 
 
 while (1)
@@ -70,7 +70,6 @@ while (1)
     
     
 	if (~isempty(stats))
-        stats(maxobject)
         [hpos, vpos]= aiming(hpos,vpos,stats(maxobject).Centroid,xy/2);
         writePosition(hservo,hpos);
         writePosition(vservo,vpos);
