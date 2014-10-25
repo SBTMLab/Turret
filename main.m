@@ -1,49 +1,19 @@
-clear all
+clear all;
+
+addpath('Modules');
 cam = webcam('USB 카메라');
 
-hold on;
 
-pause(3);
-
-IMG = snapshot(cam);
-
-imshow(IMG);
-
-
-
-
-% v=[0 1280 0 960];
-% axis(v);
-% [xi,yi,button]=ginput(1);               %마우스로 클릭한 좌표를 받는다.
-% plot(xi,yi,'ro');                       %마우스로 클릭한 좌표에 o를 찍는다.
-
-hold off;
-
-
-
-r = 236;%IMG(xi,yi,1)
-g = 170;%IMG(xi,yi,2)
-b = 123;%IMG(xi,yi,3)
+xy = [960 1280];
+rgb = [236 190 123];
 
 
 while (1)
     IMG = snapshot(cam);
-    diff_im = zeros(960,1280);  
-    for i=1:960
-        for j = 1:1280
-            if (IMG(i,j,1) < r+ 25 && IMG(i,j,1) > r - 25 && IMG(i,j,2) < g+ 25 && IMG(i,j,2) > g - 25 &&IMG(i,j,3) < b+ 25 && IMG(i,j,3) > b - 25)
-                diff_im(i,j) = 1;
-
-            
-            else
-                diff_im(i,j) = 0;
-              
-            end
-        end
-    end
     
-    diff_im = bwareaopen(diff_im,80);
-    bw = bwlabel(diff_im, 4);
+    bw = colordetect(IMG,xy,rgb);
+    
+    
     
     % Here we do the image blob analysis.
     % We get a set of properties for each labeled region.
@@ -72,6 +42,3 @@ while (1)
     
     
 end
-
-
-
