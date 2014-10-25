@@ -9,7 +9,6 @@ camname = 'USB 카메라';
 cam = webcam(camname);
 xy = [960 1280];
 
-
 %%%아두이노 설정
 arduinoport = '/dev/tty.usbmodem1421';
 hservopin = 9;
@@ -27,7 +26,7 @@ vpos = 180 * readPosition (vservo);
 
 
 
-rgb = [236 190 123];
+rgb = [200 150 90];
 
 
 while (1)
@@ -73,8 +72,6 @@ while (1)
 	if (~isempty(stats))
         stats(maxobject)
         [hpos, vpos]= aiming(hpos,vpos,stats(maxobject).Centroid,xy/2);
-        hpos
-        vpos
         writePosition(hservo,hpos);
         writePosition(vservo,vpos);
         

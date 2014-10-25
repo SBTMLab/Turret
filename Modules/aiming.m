@@ -2,8 +2,8 @@ function [out1, out2] = aiming (hpos,vpos,target,ap)
 
 diff = target - ap;
 
-hk = 10;
-vk = 10;
+hk = 30;
+vk = 30;
 
 rhpos = diff(1)/hk + hpos*180;
 rvpos = diff(2)/vk + vpos*180;
