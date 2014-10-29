@@ -5,7 +5,7 @@ addpath('Modules');
 
 
 %%%카메라 설정
-camname = 'USB 카메라';
+camname = 'USB 카메라';    
 cam = webcam(camname);
 xy = [960 1280];
 
@@ -13,6 +13,7 @@ xy = [960 1280];
 arduinoport = '/dev/tty.usbmodem1421';
 hservopin = 9;
 vservopin = 10;
+
 
 uno = arduino(arduinoport,'uno');
 
