@@ -73,13 +73,13 @@ while (1)
     ledon = 0;
     
 	if (~isempty(stats))
-        [hpos, vpos]= aiming(hpos,vpos,stats(maxobject).Centroid,xy/2);
+        [hpos, vpos]= aiming(hpos,vpos,stats(maxobject).Centroid + [0 96 ],xy/2);
         
-        if ( hpos < 715 && hpos > 565 && vpos <530 && vpos > 430)
-            counter = counter + 1;
+        if ( stats(maxobject).Centroid (1) < 800 && stats(maxobject).Centroid(1) > 500 && stats(maxobject).Centroid(2) <600 && stats(maxobject).Centroid(2) > 400)
+            counter = counter + 1
             
-            if (counter > 5 )
-                ledon = 1;
+            if (counter > 2 )
+                ledon = 1
             end
             
             
