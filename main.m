@@ -27,7 +27,7 @@ vpos = 180 * readPosition (vservo);
 
 
 
-rgb = [216 200 47];
+rgb = [207 160 30];
 
 counter = 0;
 

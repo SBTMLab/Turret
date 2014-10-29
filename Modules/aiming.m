@@ -5,8 +5,8 @@ diff = target - ap;
 hk = 30;
 vk = 50;
 
-rhpos = diff(1)/hk + hpos*180;
-rvpos = diff(2)/vk + vpos*180;
+rhpos = -diff(1)/hk + hpos*180;
+rvpos = -diff(2)/vk + vpos*180;
 
 if rhpos > 150
     rhpos = 150;
