@@ -28,6 +28,7 @@ vpos = 180 * readPosition (vservo);
 
 rgb = [216 200 47];
 
+counter = 0;
 
 while (1)
     IMG = snapshot(cam);
@@ -68,14 +69,31 @@ while (1)
     
     hold off
     
+    ledon = 0;
     
 	if (~isempty(stats))
         [hpos, vpos]= aiming(hpos,vpos,stats(maxobject).Centroid,xy/2);
+        
+        if ( hpos < 715 && hpos > 565 && vpos <530 && vpos > 430)
+            counter = counter + 1;
+            
+            if (counter > 5 )
+                ledon = 1;
+            end
+            
+            
+        end
+        
+        
+        
         writePosition(hservo,hpos);
         writePosition(vservo,vpos);
         
+    else
+        counter = 0;
+        
 	end
-    
+    writeDigitalPin (uno,5,ledon);
     
     
     
