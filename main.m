@@ -10,7 +10,7 @@ cam = webcam(camname);
 xy = [960 1280];
 
 %%%아두이노 설정
-arduinoport = '/dev/tty.usbmodem1421';
+arduinoport = '/dev/tty.usbmodem1411';
 hservopin = 9;
 vservopin = 10;
 
@@ -27,7 +27,7 @@ vpos = 180 * readPosition (vservo);
 
 
 
-rgb = [207 160 30];
+rgb = [141 151 30];
 
 counter = 0;
 
